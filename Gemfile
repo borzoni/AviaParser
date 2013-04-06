@@ -28,6 +28,7 @@ end
 gem 'jquery-rails'
 gem 'rest-client'
 gem 'haml-rails'
+gem 'nokogiri'
 gem 'activerecord-tableless'
 gem 'rabl'
 

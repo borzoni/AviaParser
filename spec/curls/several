@@ -1,0 +1,15 @@
+HTTP/1.1 200 OK
+Date: Sat, 06 Apr 2013 09:55:13 GMT
+Server: Apache/2.2.17 (Win32) PHP/5.3.8
+X-Powered-By: PHP/5.3.8
+Set-Cookie: pSTATEINC=3; expires=Mon, 06-May-2013 09:55:13 GMT; path=/; httponly
+Set-Cookie: pTOWNFROMINC=2; expires=Mon, 06-May-2013 09:55:13 GMT; path=/; httponly
+ETag: 140a78b29f1f6dd8aa49af59d38e658a
+P3P: CP="NOI DSP COR NID ADMa OPTa OUR NOR"
+Vary: Accept-Encoding
+Transfer-Encoding: chunked
+Content-Type: text/html; charset=windows-1251
+
+<script type="text/javascript" charset="windows-1251" src="/public/js/pack.main.js?rev=708705008"></script><script type="text/javascript" charset="windows-1251" src="/public/js/page_callback.js?rev=708705008"></script><script charset="windows-1251" type="text/javascript">(function(){if (typeof samo === "undefined") { samo = {}; }samo.ROOT_URL = '/freight_monitor?';if (typeof Date.format == "undefined") {Date.format = 'dd.mm.yyyy';};if (typeof Date.mask == "undefined") {Date.mask = '39.19.2099';};var __TEMP__ = {'WWWROOT':'/','search_tour':{'url':'/search_tour?','title':'Поиск тура','public':true},'spo':{'url':'/spo?','title':'Специальные предложения','public':true},'hotel_stopsale':{'url':'/hotel_stopsale?','title':'Остановки продаж в гостиницах','public':true},'freight_monitor':{'url':'/freight_monitor?','title':'Наличие мест на рейсах','public':true},'cl_refer':{'url':'/cl_refer?','title':'Просмотр заявок','public':true},'messages':{'url':'/messages?','title':'Сообщения','public':true},'edit_agency':{'url':'/edit_agency?','title':'Редактирование партнера','public':true},'the_best':{'url':'/the_best?','title':'Лучшие спецпредложения','public':true}}; samo.ROUTES = (typeof samo.ROUTES == "undefined") ? __TEMP__ : samo.jQuery.extend(true,samo.ROUTES,__TEMP__); if (typeof samo != "undefined" && typeof samo.page_callback != "undefined") {samo.page_callback('freight_monitor','default_action',{'TOWNFROMINC':2,'STATEINC':3});};})();</script>
+<script type="text/javascript" charset="windows-1251" src="/public/js/freight_monitor/3_freight_monitor.js?rev=708705008"></script>
+
