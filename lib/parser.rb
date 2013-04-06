@@ -3,7 +3,7 @@ class Parser
     def parse(from_date, to_date)
       start, days_count = process_interval(from_date, to_date)  
       url = make_full_url(start, days_count)
-      # response = get_response(url)
+      response = get_response(url)
     end
 
     private
@@ -21,6 +21,13 @@ class Parser
       end
       dif = (to - from).to_i
       [from, dif]
+    end
+    
+    def get_response(url)
+      raw_data = RestClient.get(url)
+      raw_data.force_encoding('WINDOWS-1251').encode('UTF-8')   # lovely encoding issues...   
+      result = raw_data[/(<table.*\/table>)/im]                 # extract actual html content(it's inside table tags)
+      Nokogiri::HTML.parse(result)                                                            
     end
     
     def make_full_url(start_endpoint, days_count)
