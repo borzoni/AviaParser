@@ -146,7 +146,10 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   haml-rails
   jquery-rails
+<<<<<<< HEAD
   jquery-ui-rails
+=======
+>>>>>>> fe3cfafec3e43879f4d6c11e2bbd73fa304ecff4
   nokogiri
   rabl
   rails (= 3.2.9)

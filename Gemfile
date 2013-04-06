@@ -31,6 +31,7 @@ gem 'haml-rails'
 gem 'bourbon'
 gem 'nokogiri'
 gem 'jquery-ui-rails'
+gem 'nokogiri'
 gem 'activerecord-tableless'
 gem 'rabl'
 
