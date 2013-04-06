@@ -10,25 +10,29 @@ class Parser
       response.css('tbody tr').each do |row|                # it seems no other way than css search, no ids or smth else
         columns = row.css('td')
         
-        airport_from = columns[4].text
-        airport_to = columns[6].text
-        flight_id = columns[1].text
-        n_seats = columns[8].text.gsub(/\\[n ]/m, '').strip   # some garbage cleaning ('\\n' symbols and spaces)
-        date = columns[0].text
         
-        airports[airport_to] = Airport.new(title: airport_to) unless airports.has_key?(airport_to)
-        airports[airport_from] = Airport.new(title: airport_from) unless airports.has_key?(airport_from)
- 
-        f = Flight.new(flight_date: date, name: flight_id, num_seats: n_seats)
-        f.departure_airport = airports[airport_from]
-        f.arrival_airport = airports[airport_to]
-        result << f
+        result << parse_flight(columns, airports, 0)        # Direct flight
+        result << parse_flight(columns, airports, 9)        # It's dual
       end
       result
     end
 
     private
     
+    def parse_flight (columns, airports, offset)
+      airport_from = columns[4 + offset].text
+      airport_to = columns[6 + offset].text
+      flight_id = columns[1 + offset].text
+      n_seats = columns[8 + offset].text.gsub(/\\[n ]/m, '').strip   # some garbage cleaning ('\\n' symbols and spaces)
+      date = columns[0 + offset].text
+       
+      airports[airport_to] = Airport.new(title: airport_to) unless airports.has_key?(airport_to)
+      airports[airport_from] = Airport.new(title: airport_from) unless airports.has_key?(airport_from)
+      f = Flight.new(flight_date: date, name: flight_id, num_seats: n_seats)
+      f.departure_airport = airports[airport_from]
+      f.arrival_airport = airports[airport_to]
+      f
+    end  
     # conversion subroutine
     # also simple validation
     def process_interval(date_from, date_to)
