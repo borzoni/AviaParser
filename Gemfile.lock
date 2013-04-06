@@ -22,6 +22,8 @@ GEM
       activesupport (= 3.2.9)
       arel (~> 3.0.2)
       tzinfo (~> 0.3.29)
+    activerecord-tableless (1.2.0)
+      activerecord (>= 2.3.0)
     activeresource (3.2.9)
       activemodel (= 3.2.9)
       activesupport (= 3.2.9)
@@ -132,6 +134,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord-tableless
   coffee-rails (~> 3.2.1)
   haml-rails
   jquery-rails

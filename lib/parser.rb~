@@ -1,9 +1,9 @@
 class Parser
   class << self
     def parse(from_date, to_date)
-      start, days_count = process_interval(from_date, to_date)  
-      url = make_full_url(start, days_count)
-      # response = get_response(url)
+      start, dif = process_interval(from_date, to_date)  
+      url = make_full_url(start, dif)
+      response = get_response(url)
     end
 
     private
@@ -19,11 +19,10 @@ class Parser
       if from > to
         raise ArgumentError.new('Date of Arrival is less than Departure Date')
       end
-      dif = (to - from).to_i
-      [from, dif]
+      [from, (to - from).to_i]
     end
     
-    def make_full_url(start_endpoint, days_count)
+    def make_full_url(start_endpoint, dif)
       main_part = "http://online.nectravel.ru/freight_monitor/"
       query_string = {
           :samo_action => 'FREIGHTS',                       # requested action. dunno what 'samo' stands for.
@@ -31,7 +30,7 @@ class Parser
           :STATEINC => '3',                                 # the desired country 
           :TOWNTOINC => '5',                                # the desired settlement
           :CHECKIN => start_endpoint.strftime('%Y%m%d'),    # from endpoint
-          :NIGHTS_FROM => days_count,                       # let it be the duration
+          :NIGHTS_FROM => dif,                        # let it be the duration
       }
       main_part + "?#{query_string.to_param}"
     end
