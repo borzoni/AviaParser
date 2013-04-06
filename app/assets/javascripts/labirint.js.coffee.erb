@@ -1,0 +1,29 @@
+$ ->
+  $(".datepicker").datepicker
+    showOn: "button"
+    buttonImage: '<%= asset_path('calendar.gif') %>'
+    buttonImageOnly: true
+    
+  update_result_content = (xhr, data, status) ->
+    $("#error_message").hide()
+    $("#result .data_table").html(data)
+
+  form = $('#main_form')
+  form.submit (e)->
+    e.preventDefault()
+    $.ajax
+      type: 'POST'
+      url: form.attr('action')
+      data: form.serialize()
+      beforeSend: ->
+        $('#error_message').hide()
+      error: ->
+        $('#error_message').show()
+        $('#result .data_table').text('')
+      success: (data, status, xhr)->
+        response = xhr.getResponseHeader("content-type") || ""
+        if response.indexOf('html') > -1
+          $('#result .data_table').html(data)
+        if (response.indexOf('xml') > -1) or (response.indexOf('json') > -1) 
+          $('#result .data_table').text(xhr.responseText)
+

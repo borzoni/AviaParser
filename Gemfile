@@ -20,7 +20,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-group :development, :test do
+group :test do
   gem 'rspec-rails'
   gem 'webmock'
 end
@@ -28,7 +28,9 @@ end
 gem 'jquery-rails'
 gem 'rest-client'
 gem 'haml-rails'
+gem 'bourbon'
 gem 'nokogiri'
+gem 'jquery-ui-rails'
 gem 'activerecord-tableless'
 gem 'rabl'
 

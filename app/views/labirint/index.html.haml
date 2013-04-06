@@ -1,0 +1,29 @@
+
+#container
+  #header
+    %h1 Парсер туроператора Лабиринт
+  %h2 Москва - Стамбул
+  %h3= link_to 'http://online.nectravel.ru/freight_monitor', 'http://online.nectravel.ru/freight_monitor', :target => '_blank'
+
+  = form_tag labirint_parser_url, :method => :post, :id => :main_form do
+    .date_pickers
+      .date
+        %input.datepicker{ :type => :text, :name => :date_from }
+      .date
+        %input.datepicker{ :type => :text, :name => :date_to }
+    .formats
+      .format
+        = radio_button_tag 'format', 'html', true
+        HTML
+      .format
+        = radio_button_tag 'format', 'xml'
+        XML
+      .format
+        = radio_button_tag 'format', 'json'
+        JSON
+    .parse_button_div
+      = submit_tag 'Запрос', class: "red_button"
+
+  #result
+    #error_message Ошибка при обработкe входных данных
+    .data_table

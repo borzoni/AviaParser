@@ -1,0 +1,16 @@
+%table{ :align => :center }
+  %thead
+    %tr
+      %td Дата вылета
+      %td Номер рейса
+      %td Аэр-т отправления
+      %td Аэр-т назначения
+      %td Наличие мест
+  %tbody
+    - @flights.each do |f|
+      %tr
+        %td= f.flight_date
+        %td= f.name
+        %td= f.departure_airport.title
+        %td= f.arrival_airport.title
+        %td= f.num_seats
