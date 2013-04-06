@@ -9,8 +9,6 @@ class Parser
       airports = Hash.new()                                 # needed to store airport objects, for associations with flights 
       response.css('tbody tr').each do |row|                # it seems no other way than css search, no ids or smth else
         columns = row.css('td')
-        
-        
         result << parse_flight(columns, airports, 0)        # Direct flight
         result << parse_flight(columns, airports, 9)        # It's dual
       end
@@ -24,7 +22,7 @@ class Parser
       airport_to = columns[6 + offset].text
       flight_id = columns[1 + offset].text
       n_seats = columns[8 + offset].text.gsub(/\\[n ]/m, '').strip   # some garbage cleaning ('\\n' symbols and spaces)
-      date = columns[0 + offset].text
+      date = columns[0].text
        
       airports[airport_to] = Airport.new(title: airport_to) unless airports.has_key?(airport_to)
       airports[airport_from] = Airport.new(title: airport_from) unless airports.has_key?(airport_from)
@@ -49,7 +47,7 @@ class Parser
     end
     
     def get_response(url)
-      raw_data = RestClient.get(url)
+      raw_data = RestClient.get(url) { |response, request, result| response }
       raw_data.force_encoding('WINDOWS-1251').encode('UTF-8')   # lovely encoding issues...   
       result = raw_data[/(<table.*\/table>)/im]                 # extract actual html content(it's inside table tags)
       Nokogiri::HTML.parse(result)                                                            
